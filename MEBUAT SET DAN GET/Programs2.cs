@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 
@@ -20,29 +20,23 @@ namespace KerangkaGame
             this.senjata = senjata;
         }
 
+        public void serang(Karakter target)
+        {
+           Console.WriteLine("mulai menyerang " + target.nama);
+            target.TerimaSerangan(50); // Contoh damage
+        }
 
+        public void TerimaSerangan(int jumalahSerangan)
+        {
+            kesehatan -= jumalahSerangan;
+            Console.WriteLine($"{nama} diserang dengan {jumalahSerangan}, kesehatan sekarang: {kesehatan}");
+            if (kesehatan <= 0)
+            {
+                Console.WriteLine($"{nama} telah kalah!");
+            }
+        }
 
-        //public void setData(string namaBaru, string statusSehat, string senjataBaru, int totalSenjata, int totalPower)
-        //{
-        //    this.nama = namaBaru;
-        //    this.kesehatan = statusSehat;
-        //    this.senjata = senjataBaru;
-        //    this.jumlahSenjata = totalSenjata;
-        //    this.jumlahPower = totalPower;
-        //}
-
-        //public void getData()
-        //{
-        //    Console.Write(nama);
-        //    Console.Write(" / ");
-        //    Console.Write(kesehatan);
-        //    Console.Write(" / ");
-        //    Console.Write(senjata);
-        //    Console.Write(" / ");
-        //    Console.Write(jumlahSenjata);
-        //    Console.Write(" / ");
-        //    Console.WriteLine(jumlahPower);
-        //}
+       
 
         public void getData()
         {
@@ -59,30 +53,14 @@ namespace KerangkaGame
         static void Main(string[] args)
         {
 
-            Karakter player1 = new Karakter("Febrian", "Sehat", "Pedang"); //membuat object
-            player1.getData(); //memanggil method getData
+            Karakter player1 = new Karakter("Febrian", 100, "Pedang"); //membuat object
+            Karakter musuh = new Karakter("Goblin", 100, "Pisau"); //membuat object
+            player1.serang(musuh);
+            player1.getData();
+            musuh.getData();
 
 
-            //// kode pertemuan sebelumnya
-            //List<Karakter> daftarHero = new List<Karakter>();
-
-            //Karakter player1 = new Karakter();
-            //player1.setData("Archer", "Sehat", "Pedang", 2, 50);
-
-            //Karakter player2 = new Karakter();
-            //player2.setData("Goblin", "Kritis", "Pisau", 1, 75);
-
-            //Karakter enemy = new Karakter();
-            //enemy.setData("Zombie", "Sehat", "Pukulan Tangan", 1, 5);
-
-            //daftarHero.Add(player1);
-            //daftarHero.Add(player2);
-            //daftarHero.Add(enemy);
-
-            //foreach (Karakter player in daftarHero)
-            //{
-            //    player.getData();
-            //}
+            
 
         }
     }
